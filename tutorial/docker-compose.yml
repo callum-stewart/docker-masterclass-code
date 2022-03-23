@@ -1,50 +1,26 @@
-version: "3"
+version: "3.8"
 services:
-  csharp: #docker run -it -v ${PWD}:/work -w /work -p 5000:5000 aimvector/csharp:1.0.0 /bin/sh
+  csharp: #docker run -it -v ${PWD}:/work -w /work -p 5000:5000 csharp
     container_name: csharp
-      #image: aimvector/csharp:1.0.0
-    build: ./cs
-    working_dir: /work
-    entrypoint: /bin/sh
-    stdin_open: true
-    tty: true
-    volumes:
-    - ./cs/src/:/work
+    build:
+      context: ./cs
     ports:
       - 5000:5000
-  golang: #docker run -it -v ${PWD}:/work -w /work -p 5001:5000 aimvector/golang:1.0.0 /bin/sh
+  golang: #docker run -it -v ${PWD}:/work -w /work -p 5001:5000 golang:1.0.0
     container_name: golang
-      #image: aimvector/golang:1.0.0
-    build: ./golang
-    working_dir: /work
-    entrypoint: /bin/sh
-    stdin_open: true
-    tty: true
-    volumes:
-    - ./golang/src/:/work
+    build: 
+      context: ./golang
     ports:
       - 5001:5000
-  nodejs: #docker run -it -v ${PWD}:/work -w /work -p 5002:5000 aimvector/nodejs:1.0.0 /bin/sh
+  nodejs: #docker run -it -v ${PWD}:/work -w /work -p 5002:5000 nodejs:1.0.0
     container_name: nodejs
-      #image: aimvector/nodejs:1.0.0
-    build: ./nodejs
-    working_dir: /work
-    entrypoint: /bin/sh
-    stdin_open: true
-    tty: true
-    volumes:
-    - ./nodejs/src/:/work
+    build:
+      context: ./nodejs
     ports:
       - 5002:5000
-  python: #docker run -it -v ${PWD}:/work -w /work -p 5003:5000 aimvector/python:1.0.0 /bin/sh
+  python: #docker run -it -v ${PWD}:/work -w /work -p 5003:5000 python:1.0.0
     container_name: python
-      #image: aimvector/python:1.0.0
-    build: ./python
-    working_dir: /work
-    entrypoint: /bin/sh
-    stdin_open: true
-    tty: true
-    volumes:
-    - ./python/src/:/work
+    build:
+      context: ./python
     ports:
       - 5003:5000
